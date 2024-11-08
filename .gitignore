@@ -1,0 +1,8 @@
+# IntelliJ File
+.idea
+
+# Environment variables
+.env.*
+
+# Firebase private key
+service-account.json
