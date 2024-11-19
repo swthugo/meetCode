@@ -6,6 +6,9 @@ src/main/resources/application-dev.yml
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# misc
+.DS_Store
+
 ### STS ###
 .apt_generated
 .classpath

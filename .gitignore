@@ -4,6 +4,9 @@
 # Environment variables
 .env.*
 
+# misc
+.DS_Store
+
 # Firebase private key
 service-account.json
 
