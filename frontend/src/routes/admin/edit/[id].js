@@ -4,7 +4,7 @@ import MarkdownProvider from "../../../components/MarkDownEditor/providers/markd
 import Editor from "../../../components/MarkDownEditor/editor";
 import Preview from "../../../components/MarkDownEditor/preview";
 import Builder from "../../../components/Builder";
-import { ADMIN_EDIT_PROBLEM_URL, BACKEND_ADDRESS } from "../../config";
+import { BACKEND_ADDRESS } from "../../config";
 import {
   performAuthenticatedGetActionAsync,
   performAuthenticatedPutActionAsync,
@@ -65,7 +65,7 @@ export default function QuestionEditPage() {
   };
 
   useEffect(() => {
-    const url = BACKEND_ADDRESS + ADMIN_EDIT_PROBLEM_URL + id;
+    const url = BACKEND_ADDRESS + "admin/edit/" + id;
 
     const fetchProblems = async () => {
       const result = await performAuthenticatedGetActionAsync(url);
@@ -165,7 +165,7 @@ export default function QuestionEditPage() {
     };
 
     const response = await performAuthenticatedPutActionAsync(
-      BACKEND_ADDRESS + ADMIN_EDIT_PROBLEM_URL + id + "/run",
+      BACKEND_ADDRESS + "admin/edit/" + id + "/run",
       requestData,
     );
 
@@ -199,7 +199,7 @@ export default function QuestionEditPage() {
     };
 
     const response = await performAuthenticatedPutActionAsync(
-      BACKEND_ADDRESS + ADMIN_EDIT_PROBLEM_URL + id,
+      BACKEND_ADDRESS + "admin/edit/" + id,
       requestData,
     );
 

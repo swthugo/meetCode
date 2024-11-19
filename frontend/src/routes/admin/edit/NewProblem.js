@@ -8,7 +8,7 @@ import Editor from "../../../components/MarkDownEditor/editor";
 import Preview from "../../../components/MarkDownEditor/preview";
 
 import { jwtDecode } from "jwt-decode";
-import { ADMIN_SUBMIT_PROBLEM, BACKEND_ADDRESS } from "../../config";
+import { BACKEND_ADDRESS } from "../../config";
 import { performPostActionAsync } from "../../utils";
 import TabBar, {
   TabButton,
@@ -112,7 +112,7 @@ export default function NewProblem() {
     };
 
     const response = await performPostActionAsync(
-      BACKEND_ADDRESS + ADMIN_SUBMIT_PROBLEM,
+      BACKEND_ADDRESS + "admin/edit/new/submit",
       requestData,
     );
 

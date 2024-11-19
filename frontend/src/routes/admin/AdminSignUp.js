@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ADMIN_SIGN_UP_URL, BACKEND_ADDRESS } from "../config";
+import { BACKEND_ADDRESS } from "../config";
 import { performPostActionAsync } from "../utils";
 import { useNavigate } from "react-router-dom";
 import LoadingIcon from "../../icons/LoadingIcon";
@@ -18,7 +18,7 @@ export default function AdminSignUp() {
 
     const loginCode = formData.get("loginCode");
 
-    const endpoint = BACKEND_ADDRESS + (loginCode ? ADMIN_SIGN_UP_URL : "");
+    const endpoint = BACKEND_ADDRESS + (loginCode ? "register/admin" : "");
 
     console.log("BACKEND_ADDRESS: " + endpoint);
 

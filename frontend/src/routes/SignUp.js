@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Builder from "../components/Builder";
-import { BACKEND_ADDRESS, USER_SIGN_UP_URL } from "./config";
+import { BACKEND_ADDRESS } from "./config";
 import { performPostActionAsync } from "./utils";
 import { useNavigate } from "react-router-dom";
 import LoadingIcon from "../icons/LoadingIcon";
@@ -15,9 +15,9 @@ export default function SignUp() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const endpoint = BACKEND_ADDRESS + USER_SIGN_UP_URL;
+    const endpoint = BACKEND_ADDRESS + "/register/user";
 
-    console.log("endpoint: " + USER_SIGN_UP_URL);
+    console.log("endpoint: " + endpoint);
 
     const data = {
       displayName: formData.get("name"),

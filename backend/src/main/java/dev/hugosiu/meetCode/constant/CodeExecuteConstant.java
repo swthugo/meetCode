@@ -1,11 +1,11 @@
 package dev.hugosiu.meetCode.constant;
 
 public class CodeExecuteConstant {
-  public static final String ROOT_LOCATION = "./proj-meetcode-backend";
-  public static final String SERVICE_ACCOUNT = ROOT_LOCATION + "/src/main/resources/service-account.json";
+  public static final String ROOT_LOCATION = "./meetCode";
+  public static final String SERVICE_ACCOUNT = "/config/service-account.json";
   public static final String JUNIT_STANDALONE_JAR = ROOT_LOCATION + "/src/main/resources/junit-platform-console-standalone-1.5.2.jar";
   /* Directory */
-  public static final String TEMP_FILE_PATH = "./../temp_MeetMeet";
+  public static final String TEMP_FILE_PATH = "./../bin";
 
   public static final String LOG_FILE_NAME = "log.txt";
 

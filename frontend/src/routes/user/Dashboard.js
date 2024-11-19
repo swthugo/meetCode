@@ -21,7 +21,7 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    const url = BACKEND_ADDRESS + USER_DASHBOARD_URL;
+    const url = BACKEND_ADDRESS + "problem";
 
     const fetchProblems = async () => {
       const result = await performAuthenticatedGetActionAsync(url);

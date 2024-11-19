@@ -21,7 +21,7 @@ import TabBar, {
   TabDivier,
   TabSection,
 } from "../../../components/TabComponent";
-import { BACKEND_ADDRESS, USER_SUBMISSION_URL } from "../../config";
+import { BACKEND_ADDRESS} from "../../config";
 import {
   performAuthenticatedGetActionAsync,
   performAuthenticatedPostActionAsync,
@@ -61,12 +61,10 @@ export default function ProblemPage() {
   };
 
   useEffect(() => {
-    const url = BACKEND_ADDRESS + USER_SUBMISSION_URL + id;
+    const url = BACKEND_ADDRESS + "problem/" + id;
 
     const fetchProblems = async () => {
       const result = await performAuthenticatedGetActionAsync(url);
-
-      // console.log(result.data);
 
       if (result.error) {
         // console.log(result.message);
@@ -162,7 +160,7 @@ export default function ProblemPage() {
     };
 
     const response = await performAuthenticatedPostActionAsync(
-      BACKEND_ADDRESS + USER_SUBMISSION_URL + id + "/run",
+      BACKEND_ADDRESS + "problem/" + id + "/run",
       requestData,
     );
 
@@ -193,7 +191,7 @@ export default function ProblemPage() {
     console.log(formData.solution);
 
     const response = await performAuthenticatedPostActionAsync(
-      BACKEND_ADDRESS + USER_SUBMISSION_URL + id + "/submit",
+      BACKEND_ADDRESS + "problem/" + id + "/submit",
       requestData,
     );
 
@@ -224,7 +222,7 @@ export default function ProblemPage() {
     setLoading(true);
 
     const url =
-      BACKEND_ADDRESS + USER_SUBMISSION_URL + "submit/" + submissionId;
+      BACKEND_ADDRESS + "problem/submit/" + submissionId;
 
     const result = await performAuthenticatedGetActionAsync(url);
 
@@ -243,7 +241,7 @@ export default function ProblemPage() {
     event.preventDefault();
     setLoading(true);
 
-    const url = BACKEND_ADDRESS + USER_SUBMISSION_URL + id + "/showAns";
+    const url = BACKEND_ADDRESS + "problem/" + id + "/showAns";
 
     const result = await performAuthenticatedGetActionAsync(url);
 

@@ -5,7 +5,7 @@ import UpDownIcon from "../../icons/chevron-up-down-icon";
 import { useNavigate } from "react-router-dom";
 import PlusIcon from "../../icons/plus-icon";
 import { performAuthenticatedGetActionAsync } from "../utils";
-import { ADMIN_DASHBOARD_URL, BACKEND_ADDRESS } from "../config";
+import { BACKEND_ADDRESS } from "../config";
 import ClickedIcon from "../../icons/check-circle-icon";
 
 export default function AdminDashboard() {
@@ -19,7 +19,7 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    const url = BACKEND_ADDRESS + ADMIN_DASHBOARD_URL;
+    const url = BACKEND_ADDRESS + "admin/dashboard";
     const fetchProblems = async () => {
       const result = await performAuthenticatedGetActionAsync(url);
 
