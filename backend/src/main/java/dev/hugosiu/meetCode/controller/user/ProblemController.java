@@ -137,7 +137,7 @@ public class ProblemController {
     Long userId = authenticationService.getUid();
     TestCase testCase = testCaseService.findByProblemId(problemId);
 
-    RunConsoleDTO runConsoleDTO = CodeExecutionService.executeCode(
+    RunConsoleDTO runConsoleDTO = codeExecutionService.executeCode(
             userId, problemId, requestDTO.getSolution(), testCase.getTestScript()
     );
 
@@ -156,7 +156,7 @@ public class ProblemController {
     Problem problem = userProblem.getProblem();
     TestCase testCase = testCaseService.findByProblemId(problemId);
 
-    RunConsoleDTO runConsoleDTO = CodeExecutionService.executeCode(
+    RunConsoleDTO runConsoleDTO = codeExecutionService.executeCode(
             userProblem.getUser().getId(),
             problemId,
             requestDTO.getSolution(),

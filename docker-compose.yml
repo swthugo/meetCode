@@ -6,6 +6,7 @@ volumes:
 
 services:
   frontend:
+    platform: linux/amd64
     image: ${FRONTEND_IMAGE_NAME}
     depends_on:
       - backend
@@ -37,6 +38,7 @@ services:
     networks:
       - mc-network
   backend:
+    platform: linux/amd64
     image: ${BACKEND_IMAGE_NAME}
     depends_on:
       - db
@@ -56,7 +58,9 @@ services:
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
       ADMIN_LOGIN_CODE: ${ADMIN_LOGIN_CODE}
       GOOGLE_JWK_SET_URI: ${GOOGLE_JWK_SET_URI}
+      RUN_TEST_PATH: ${DOCKER_CONTAINER_TEST_CASE_DIR}
     volumes:
       - ${FIREBASE_SERVICE_ACCOUNT_PATH}:/config/service-account.json:ro
+      - ${DOCKER_HOST_TEST_CASE_DIR}:${DOCKER_CONTAINER_TEST_CASE_DIR}:rw
     networks:
       - mc-network

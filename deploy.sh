@@ -66,7 +66,7 @@ ssh -t -i "${PRIVATE_KEY_FILE}" "${LINUX_USER}@${LINUX_SERVER_ADDRESS}" << EOF
   aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ECR_BASE_URL}
 
   # Pull the latest images and start the services
-  docker compose --env-file $(basename "$ENV_FILE") -f ${DOCKER_COMPOSE_FILE} up --pull always -d
+  docker-compose --env-file $(basename "$ENV_FILE") -f ${DOCKER_COMPOSE_FILE} up --pull always -d
 EOF
 
 echo "Deployment complete."

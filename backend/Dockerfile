@@ -8,6 +8,15 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 
+# Define build arguments #depends what your project needs
+ARG RUN_TEST_PATH
+
+# Use build argument in a layer to force rebuild on change
+RUN echo "RUN_TEST_PATH=${RUN_TEST_PATH}" > .env
+
+# Set environment variables for the build
+ENV RUN_TEST_PATH=${RUN_TEST_PATH}
+
 # Copy the source code
 COPY src ./src
 

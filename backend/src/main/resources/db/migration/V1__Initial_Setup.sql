@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS submission (
 CREATE TABLE IF NOT EXISTS test_case (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     problem_id BIGINT NOT NULL,
-    testScript VARCHAR(2550) NOT NULL,
+    test_script VARCHAR(2550) NOT NULL,
     CONSTRAINT fk_testCase_problem FOREIGN KEY (problem_id) REFERENCES problem(id) ON DELETE CASCADE
 );
 

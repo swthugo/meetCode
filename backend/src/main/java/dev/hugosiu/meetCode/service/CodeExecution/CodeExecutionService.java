@@ -4,6 +4,7 @@ import dev.hugosiu.meetCode.constant.CodeExecuteConstant;
 import dev.hugosiu.meetCode.dto.CompilerConsoleDTO;
 import dev.hugosiu.meetCode.dto.RunConsoleDTO;
 import dev.hugosiu.meetCode.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.tools.*;
@@ -21,7 +22,10 @@ import java.util.stream.Collectors;
 @Service
 public class CodeExecutionService {
 
-  public static RunConsoleDTO executeCode(Long userId, Long problemId, String code, String testCode) throws IOException, ResourceNotFoundException {
+  @Value("${run.test.path}")
+  private String runTestPath;
+
+  public RunConsoleDTO executeCode(Long userId, Long problemId, String code, String testCode) throws IOException, ResourceNotFoundException {
     TestEnv testEnv = createDirectories(userId, problemId);
 
     FileEditor file = writeCodeFile(testEnv, code);
@@ -46,10 +50,10 @@ public class CodeExecutionService {
     return runTestJar(userId, problemId);
   }
 
-  private static RunConsoleDTO runTestJar(Long userId, Long problemIdx) throws IOException {
+  private RunConsoleDTO runTestJar(Long userId, Long problemIdx) throws IOException {
 
-    String classPath = CodeExecuteConstant.TEMP_FILE_PATH + "/classes";
-    String testClassPath = CodeExecuteConstant.TEMP_FILE_PATH + "/test-classes";
+    String classPath = runTestPath + "/classes";
+    String testClassPath = runTestPath + "/test-classes";
     String targetPackage = "user_" + userId + ".problem_" + problemIdx;
 
     String logFilePath = classPath + "/" + CodeExecuteConstant.LOG_FILE_NAME;
@@ -195,15 +199,15 @@ public class CodeExecutionService {
     }
   }
 
-  private static TestEnv createDirectories(Long userId, Long problemId) throws IOException {
+  private TestEnv createDirectories(Long userId, Long problemId) throws IOException {
     String[] directories = {
-            CodeExecuteConstant.TEMP_FILE_PATH,
-            CodeExecuteConstant.TEMP_FILE_PATH + "/classes",
-            CodeExecuteConstant.TEMP_FILE_PATH + "/classes/user_" + userId,
-            CodeExecuteConstant.TEMP_FILE_PATH + "/classes/user_" + userId + "/problem_" + problemId,
-            CodeExecuteConstant.TEMP_FILE_PATH + "/test-classes/",
-            CodeExecuteConstant.TEMP_FILE_PATH + "/test-classes/user_" + userId,
-            CodeExecuteConstant.TEMP_FILE_PATH + "/test-classes/user_" + userId + "/problem_" + problemId,
+            runTestPath,
+            runTestPath + "/classes",
+            runTestPath + "/classes/user_" + userId,
+            runTestPath + "/classes/user_" + userId + "/problem_" + problemId,
+            runTestPath + "/test-classes/",
+            runTestPath + "/test-classes/user_" + userId,
+            runTestPath + "/test-classes/user_" + userId + "/problem_" + problemId,
     };
 
     for (String directory : directories) {
@@ -211,8 +215,8 @@ public class CodeExecutionService {
     }
 
     return new TestEnv(
-            CodeExecuteConstant.TEMP_FILE_PATH + "/classes/user_" + userId + "/problem_" + problemId,
-            CodeExecuteConstant.TEMP_FILE_PATH + "/test-classes/user_" + userId + "/problem_" + problemId,
+            runTestPath + "/classes/user_" + userId + "/problem_" + problemId,
+            runTestPath + "/test-classes/user_" + userId + "/problem_" + problemId,
             CodeExecuteConstant.PACKAGE_NAME_HEAD + userId + CodeExecuteConstant.PACKAGE_NAME_TAIL + problemId
     );
   }

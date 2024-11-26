@@ -36,6 +36,9 @@ public class AdminProblemController {
   @Autowired
   private TestCaseService testCaseService;
 
+  @Autowired
+  private CodeExecutionService codeExecutionService;
+
   @GetMapping("/dashboard")
   public List<ProblemResponseDTO> getAllProblem() {
     List<Problem> problemList = problemService.findAll();
@@ -49,7 +52,7 @@ public class AdminProblemController {
   public RunConsoleDTO checkProblem(@RequestBody ProblemRequestDTO requestDTO)
           throws IOException, ResourceNotFoundException, CompilerFailException {
 
-    return CodeExecutionService.executeCode(
+    return codeExecutionService.executeCode(
             UserConstant.SHARED_ADMIN_ID,
             UserConstant.SHARED_ADMIN_ID,
             requestDTO.getSolution(),
@@ -74,7 +77,7 @@ public class AdminProblemController {
             .placeholder(requestDTO.getPlaceholder())
             .build();
 
-    RunConsoleDTO runConsoleDTO = CodeExecutionService.executeCode(
+    RunConsoleDTO runConsoleDTO = codeExecutionService.executeCode(
             UserConstant.SHARED_ADMIN_ID,
             UserConstant.SHARED_ADMIN_ID,
             requestDTO.getSolution(),
@@ -126,7 +129,7 @@ public class AdminProblemController {
                                                        @RequestBody ProblemRequestDTO requestDTO)
           throws ResourceNotFoundException, IOException {
 
-    RunConsoleDTO runConsoleDTO = CodeExecutionService.executeCode(
+    RunConsoleDTO runConsoleDTO = codeExecutionService.executeCode(
             UserConstant.SHARED_ADMIN_ID,
             UserConstant.SHARED_ADMIN_ID,
             requestDTO.getSolution(),
@@ -167,7 +170,7 @@ public class AdminProblemController {
     solution.setAnswer(requestDTO.getSolution());
     testCase.setTestScript(requestDTO.getTestScript());
 
-    RunConsoleDTO runConsoleDTO = CodeExecutionService.executeCode(
+    RunConsoleDTO runConsoleDTO = codeExecutionService.executeCode(
             UserConstant.SHARED_ADMIN_ID,
             UserConstant.SHARED_ADMIN_ID,
             requestDTO.getSolution(),

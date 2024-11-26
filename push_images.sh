@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # Function to display usage message
 usage() {
     echo "Usage: $0 -e <env-file>"
