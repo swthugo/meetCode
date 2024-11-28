@@ -15,7 +15,7 @@ export default function SignUp() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const endpoint = BACKEND_ADDRESS + "/register/user";
+    const endpoint = BACKEND_ADDRESS + "register/user";
 
     console.log("endpoint: " + endpoint);
 

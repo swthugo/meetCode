@@ -3,6 +3,7 @@
 
 # Environment variables
 .env.*
+bin/
 
 # misc
 .DS_Store

@@ -8,6 +8,7 @@ src/main/resources/application-dev.yml
 
 # misc
 .DS_Store
+.env
 
 ### STS ###
 .apt_generated

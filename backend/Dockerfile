@@ -31,7 +31,10 @@ WORKDIR /home/app
 
 # Create a user and set permissions for security best practices
 RUN groupadd -r app && useradd --no-log-init -r -g app app && chown -R app:app /home/app
+RUN mkdir /home/app/bin && chown -R app:app /home/app/bin
 USER app
+
+VOLUME /home/app/bin
 
 # Copy the JAR file from the build stage
 COPY --from=build /app/target/*.jar app.jar
